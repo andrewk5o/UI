@@ -1,0 +1,82 @@
+:root {
+    --radius: 5px;
+    --padding: 10px;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100vh;
+    grid-gap: .5rem;
+    grid-template-areas: 
+        "content1 content2 content2"
+        "content1 content3 content3"
+        "content4 content5 content6";
+}
+
+#content1 {
+    background: #c9268d;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content1;
+    display: grid;
+    grid-template-columns: repeat(3, 10px);
+    grid-template-rows: minmax(50px, 80px) 60px;
+    grid-gap: .2rem;
+    justify-content: center;
+    align-content: center;
+}
+
+#content2 {
+    background: #d81b60;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content2;
+}
+
+#content3 {
+    background: #b31077;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content3;
+}
+
+#content4 {
+    background: #c51162;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content4;
+}
+
+#content5 {
+    background: #bf1179;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content5;
+}
+
+#content6 {
+    background: #880e4f;
+    padding-top: var(--padding);
+    border-radius: var(--radius);
+    grid-area: content6;
+}
+
+#content1 > div {
+    background: white;
+}
+
+#nested1 {
+    grid-column: 1/ span 3;
+}

@@ -1,0 +1,37 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
+svg#seahorse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: -1;
+}
+
+svg#seahorse > path {
+    stroke-dasharray: 3950;
+    stroke-dashoffset: 0;
+    animation: animatePath 5s ease-in-out infinite;
+}
+
+@keyframes animatePath {
+    0% {
+        stroke-dashoffset: 3750;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 3750;
+    }
+}
