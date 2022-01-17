@@ -1,0 +1,27 @@
+{
+    "extends": "./tsconfig-checks.json", // string | false
+    "files": [], // string[] | false
+    "include": ["**/*"], // string[] | false
+    "exclude": ["node_modules"], // string[] | false
+    "compilerOptions": {
+        "target": "ES6", // string
+        "module": "ES6", // string
+        "moduleResolution": "node", // string
+        "lib": ["DOM", "ES6", "DOM.Iterable", "ScriptHost"], // string[]
+        "outDir": "dist", // string
+        "allowSyntheticDefaultImports": false, // boolean
+        "esModuleInterop": false, // boolean
+        "downlevelIteration": false, // boolean
+        "forceConsistentCasingInFileNames": true, // boolean
+
+        "declaration": true, // boolean
+        "declarationDir": "", // string
+        "emitDeclarationOnly": false, // boolean
+        "allowJs": false, // boolean
+        "checkJs": false, // boolean
+        "experimentalDecorators": true, // boolean
+        "emitDecoratorMetadata": true, // boolean (reflect-metadata lib required)
+        "resolveJsonModule": false, // boolean
+        "jsx": "react", // string
+    },
+}
