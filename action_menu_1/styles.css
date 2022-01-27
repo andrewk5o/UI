@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*, *::before, *::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -89,7 +89,10 @@ body {
     height: 6px;
     background: #222327;
     border-radius: 50%;
+    border: 3px solid #222327;
     transition: 0.5s;
+    display: grid;
+    place-items: center;
 }
 
 .navigation span:nth-child(1) {
@@ -103,6 +106,7 @@ body {
 .navigation.active span {
     width: 50px;
     height: 50px;
+    transition: 0.5s;
 }
 
 .navigation.active span:nth-child(1) {
@@ -111,4 +115,23 @@ body {
 
 .navigation.active span:nth-child(3) {
     transform: translateY(0) translateX(60px);
+}
+
+.navigation span i {
+    color: #222327;
+    transition: 0.5s;
+    font-size: 0em;
+}
+
+.navigation.active span i {
+    color: #fff;
+    font-size: 1.25em;
+}
+
+.navigation.active span:hover {
+    background: #29fd53;
+}
+
+.navigation.active span:hover i {
+    color: #222327;
 }
