@@ -1,6 +1,7 @@
 const DURATION = 1000;
 
 let isCollapsed = true;
+let inProgress = false;
 
 const el = document.querySelector(".collapse");
 const btn = document.querySelector(".btn-collapse");
@@ -12,14 +13,15 @@ btn.appendChild(btnTextEl);
 toggleClass(btn, "collapsed", isCollapsed);
 
 btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    isCollapsed = toggleCollapsed(isCollapsed);
-    btnTextEl.innerHTML = getBtnText(isCollapsed);
-  
-    toggleClass(e.target, "collapsed", isCollapsed);
-    showHide(e.target, isCollapsed);
+    if (!inProgress) {
+        e.preventDefault();
+        isCollapsed = toggleCollapsed(isCollapsed);
+        btnTextEl.innerHTML = getBtnText(isCollapsed);
+      
+        toggleClass(e.target, "collapsed", isCollapsed);
+        showHide(e.target, isCollapsed);
+    }
 });
-
 
 // Animation methods
 function getBtnText (collapsed) {
@@ -47,47 +49,33 @@ function decrementHeight(el, progress) {
     el.style.overflow = "hidden";
 }
 
-function slideDown() {
+function slide(callback, height = "", overflow = "") {
     const start = performance.now();
+    inProgress = true;
+
     requestAnimationFrame(function animate(time) {
         const runtime = time - start;
         const relativeProgress = runtime / DURATION;
+        const process = Math.min(relativeProgress, 1);
     
-        if (relativeProgress < 1) {
-            incrementHeight(el, relativeProgress);
+        if (process < 1) {
+            callback(el, process);
             requestAnimationFrame(animate);
         }
 
-        if (relativeProgress === 1) {
-            el.style.height = "auto";
-            el.style.overflow = "initial";
+        if (process === 1) {
+            el.style.height = height;
+            el.style.overflow = overflow;
+            inProgress = false;
         }
     });
 }
 
-function slideUp() {
-    const start = performance.now();
-    requestAnimationFrame(function animate(time) {
-        const runtime = time - start;
-        const relativeProgress = runtime / DURATION;
-
-        if (relativeProgress < 1) {
-            decrementHeight(el, relativeProgress);
-            requestAnimationFrame(animate);
-        }
-
-        if (relativeProgress === 1) {
-            el.style.height = "";
-            el.style.overflow = "";
-        }
-    });
-}
-
-function showHide(element, c) {
-    toggleClass(element, "collapsed", c);
-    if (c) {
-        slideUp();
+function showHide(element, collapsed) {
+    toggleClass(element, "collapsed", collapsed);
+    if (collapsed) {
+        slide(decrementHeight);
     } else {
-        slideDown();
+        slide(incrementHeight, "auto", "initial");
     }
 }
