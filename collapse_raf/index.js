@@ -43,7 +43,6 @@ function incrementHeight(el, progress) {
 }
 
 function decrementHeight(el, progress) {
-    height = el.scrollHeight - progress * el.scrollHeight;
     el.style.height = `${el.scrollHeight - progress * el.scrollHeight}px`;
     el.style.overflow = "hidden";
 }
@@ -54,14 +53,12 @@ function slideDown() {
         const runtime = time - start;
         const relativeProgress = runtime / DURATION;
     
-        const process = Math.min(relativeProgress, 1);
-    
-        if (process < 1) {
-            incrementHeight(el, process);
+        if (relativeProgress < 1) {
+            incrementHeight(el, relativeProgress);
             requestAnimationFrame(animate);
         }
 
-        if (process === 1) {
+        if (relativeProgress === 1) {
             el.style.height = "auto";
             el.style.overflow = "initial";
         }
@@ -73,14 +70,13 @@ function slideUp() {
     requestAnimationFrame(function animate(time) {
         const runtime = time - start;
         const relativeProgress = runtime / DURATION;
-        const process = Math.min(relativeProgress, 1);
 
-        if (process < 1) {
-            decrementHeight(el, process);
+        if (relativeProgress < 1) {
+            decrementHeight(el, relativeProgress);
             requestAnimationFrame(animate);
         }
 
-        if (process === 1) {
+        if (relativeProgress === 1) {
             el.style.height = "";
             el.style.overflow = "";
         }
