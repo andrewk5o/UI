@@ -1,4 +1,4 @@
-const DURATION = 200;
+const DURATION = 1000;
 
 let isCollapsed = true;
 
@@ -11,6 +11,17 @@ btn.appendChild(btnTextEl);
 
 toggleClass(btn, "collapsed", isCollapsed);
 
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    isCollapsed = toggleCollapsed(isCollapsed);
+    btnTextEl.innerHTML = getBtnText(isCollapsed);
+  
+    toggleClass(e.target, "collapsed", isCollapsed);
+    showHide(e.target, isCollapsed);
+});
+
+
+// Animation methods
 function getBtnText (collapsed) {
     return collapsed ? "collapsed" : "expanded";
 }
@@ -26,7 +37,6 @@ function toggleClass(element, className, collapsed) {
 function toggleCollapsed(value) {
     return !value;
 }
-
 
 function incrementHeight(el, progress) {
     el.style.height = `${progress * el.scrollHeight}px`;
@@ -85,12 +95,3 @@ function showHide(element, c) {
         slideDown();
     }
 }
-
-btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    isCollapsed = toggleCollapsed(isCollapsed);
-    btnTextEl.innerHTML = getBtnText(isCollapsed);
-  
-    toggleClass(e.target, "collapsed", isCollapsed);
-    showHide(e.target, isCollapsed);
-});
