@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500');
+
+:root {
+    --duration: .5s;
+    --bounce: cubic-bezier(.33,1.61,0,.83);
+}
+
+body {
+	font: 2em Cabin;
+	margin: 1em;
+	text-align: center;
+	background: seashell;
+}
+
+a {
+	position: relative;
+	display: inline-block;
+	padding: .25em;
+	text-decoration: none;
+	color: mediumblue;
+	mix-blend-mode: multiply;
+}
+
+.underline {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all var(--duration) var(--bounce);
+}
+
+.underline.background {
+    background: skyblue;
+}
